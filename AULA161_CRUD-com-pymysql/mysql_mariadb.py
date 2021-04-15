@@ -39,11 +39,19 @@ def conectar():
 #         cursor.executemany(query, data)
 #         conn.commit()
 
+# with conectar() as conn:
+#     with conn.cursor() as cursor:
+#         query = 'DELETE FROM clientes WHERE id IN (%s, %s, %s)'
+#         cursor.execute(query, (7, 8, 9))
+#         conn.commit()
+
+
 with conectar() as conn:
     with conn.cursor() as cursor:
-        query = 'DELETE FROM clientes WHERE id IN (%s, %s, %s)'
-        cursor.execute(query, (7, 8, 9))
+        query = 'UPDATE clientes SET sobrenome=%s WHERE id=%s'
+        cursor.execute(query, ('Parker', 6))
         conn.commit()
+
 
 with conectar() as conn:  # esse with fecha a conexão automaticamente
     with conn.cursor() as cursor:  # esse with fecha o cursor automaticamente
