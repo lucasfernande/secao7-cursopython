@@ -26,17 +26,23 @@ def conectar():
 #         cursor.execute(query, ('Jack', 'Bauer', 64, 70))
 #         conn.commit()
 
+# with conectar() as conn:
+#     with conn.cursor() as cursor:
+#         query = 'INSERT INTO clientes(nome, sobrenome, idade, peso) VALUES(%s, %s, %s, %s)'
+#
+#         data = [
+#             ('Mariana', 'Figueiredo', 26, 55),
+#             ('Pedro', 'Henrique', 21, 68),
+#             ('Rose', 'Park', 25, 53)
+#         ]
+#
+#         cursor.executemany(query, data)
+#         conn.commit()
+
 with conectar() as conn:
     with conn.cursor() as cursor:
-        query = 'INSERT INTO clientes(nome, sobrenome, idade, peso) VALUES(%s, %s, %s, %s)'
-
-        data = [
-            ('Mariana', 'Figueiredo', 26, 55),
-            ('Pedro', 'Henrique', 21, 68),
-            ('Rose', 'Park', 25, 53)
-        ]
-
-        cursor.executemany(query, data)
+        query = 'DELETE FROM clientes WHERE id IN (%s, %s, %s)'
+        cursor.execute(query, (7, 8, 9))
         conn.commit()
 
 with conectar() as conn:  # esse with fecha a conexão automaticamente
